@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Algérie - Portail Employé</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="employee-portal.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="logo" width="400">
+            <!-- <div class="logo-text">GestionCongé</div> -->
+        </div>
+        
+        <nav>
+            <a href="#dashboard" class="active" data-section="dashboard">
+                <i class="fas fa-home"></i> 
+                <span>Tableau de Bord</span>
+            </a>
+            <a href="#leave-requests" data-section="leave-requests">
+                <i class="fas fa-calendar-plus"></i> 
+                <span>Demande de Congé</span>
+            </a>
+            <a href="#history" data-section="history">
+                <i class="fas fa-history"></i> 
+                <span>Historique</span>
+            </a>
+            <a href="#documents" data-section="documents">
+                <i class="fas fa-file-alt"></i> 
+                <span>Mes Documents</span>
+            </a>
+        </nav>
+    </div>
+
+    <main>
+        <header>
+            <div class="page-title">
+                <h1 id="currentPageTitle">Tableau de Bord</h1>
+            </div>
+            <div class="user-info">
+                <button id="resetDataBtn" class="reset-btn" title="Réinitialiser toutes les données">
+                    <i class="fas fa-sync-alt"></i> Réinitialiser
+                </button>
+                <div class="notifications">
+                    <div class="notifications-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="notifications-dropdown">
+                        <div class="notifications-header">
+                            <h3>Notifications</h3>
+                            <span class="mark-all-read">Tout marquer comme lu</span>
+                        </div>
+                        <div class="notifications-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Congé approuvé</div>
+                                    <div class="notification-message">Votre demande de congé du 12 au 15 Mars a été approuvée</div>
+                                    <div class="notification-time">Il y a 2 heures</div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon warning">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Nouvelle demande en attente</div>
+                                    <div class="notification-message">Votre demande de congé maladie est en cours d'examen</div>
+                                    <div class="notification-time">Il y a 1 jour</div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon info">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Nouveau document disponible</div>
+                                    <div class="notification-message">Votre bulletin de paie de Mars 2025 est disponible</div>
+                                    <div class="notification-time">Il y a 2 jours</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notifications-footer">
+                            <a href="#" class="view-all">Voir toutes les notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile">
+                    <div class="profile-info">
+                        <span class="name">John Doe</span>
+                        <span class="role">Développeur Senior</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard-header">
+                <div class="profile-summary">
+                    <div class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" id="profileImage">
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                        <button class="change-avatar-btn" onclick="document.getElementById('profilePictureInput').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info-header">
+                        <h2>John Doe</h2>
+                        <p>Développeur Senior</p>
+                        <p>ID Employé: EMP2025-001</p>
+                        <div class="profile-info-grid">
+                            <div class="info-group">
+                                <label>Email Professionnel</label>
+                                <p>john.doe@company.com</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Téléphone</label>
+                                <p>+33 6 12 34 56 78</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Département</label>
+                                <p>Développement</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Manager</label>
+                                <p>Sophie Martin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Congés Disponibles</h3>
+                        <p>15 jours</p>
+                        <small>Année 2025</small>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>En Attente</h3>
+                        <p>2 demandes</p>
+                        <small>Mise à jour: aujourd'hui</small>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Congés Pris</h3>
+                        <p>10 jours</p>
+                        <small>Cette année</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="grid-item recent-activity">
+                    <h2>Activité Récente</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon approved">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Congé approuvé</h4>
+                                <p>Votre demande de congé du 12 au 15 Mars a été approuvée</p>
+                                <small>Il y a 2 heures</small>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="activity-details">
+                                <h4>Nouvelle demande</h4>
+                                <p>Demande de congé maladie en attente de validation</p>
+                                <small>Il y a 1 jour</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item calendar-preview">
+                    <div class="calendar-header">
+                        <h2>Calendrier des Congés</h2>
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn prev-month">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="current-month">Mars 2025</span>
+                            <button class="calendar-nav-btn next-month">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-widget" id="calendarWidget">
+                        <div class="calendar-weekdays">
+                            <div>Lun</div>
+                            <div>Mar</div>
+                            <div>Mer</div>
+                            <div>Jeu</div>
+                            <div>Ven</div>
+                            <div>Sam</div>
+                            <div>Dim</div>
+                        </div>
+                        <div class="calendar-days" id="calendarDays">
+                            <!-- Days will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <div class="legend-color today"></div>
+                            <span>Aujourd'hui</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color approved"></div>
+                            <span>Congé Approuvé</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color pending"></div>
+                            <span>En Attente</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color rejected"></div>
+                            <span>Congé Refusé</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leave Request Section -->
+        <section id="leave-requests" class="section">
+            <div class="leave-request-container">
+                <div class="leave-form-section">
+                    <h2>Nouvelle Demande de Congé</h2>
+                    <form id="leaveRequestForm" class="leave-form">
+                        <div class="form-group">
+                            <label>Type de Congé</label>
+                            <select name="leaveType" required>
+                                <option value="">Sélectionner le type</option>
+                                <option value="Congé Payé">Congé Payé</option>
+                                <option value="Congé Sans Solde">Congé Sans Solde</option>
+                                <option value="Congé Maladie">Congé Maladie</option>
+                                <option value="Congé Maternité">Congé Maternité</option>
+                                <option value="Congé Formation">Congé Formation</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date de Début</label>
+                                <input type="date" name="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date de Fin</label>
+                                <input type="date" name="endDate" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Motif</label>
+                            <textarea name="reason" placeholder="Décrivez brièvement la raison de votre congé..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Documents Justificatifs</label>
+                            <div class="file-upload">
+                                <input type="file" name="documents" id="documents" multiple>
+                                <label for="documents" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Glissez vos fichiers ici ou cliquez pour télécharger</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Soumettre la Demande
+                        </button>
+                    </form>
+                </div>
+
+                <div class="leave-status-section">
+                    <h2>Statut des Demandes</h2>
+                    <div class="leave-status-tabs">
+                        <button class="tab-btn active" data-tab="pending">En Attente</button>
+                        <button class="tab-btn" data-tab="approved">Approuvées</button>
+                        <button class="tab-btn" data-tab="rejected">Refusées</button>
+                    </div>
+                    <div class="leave-status-content">
+                        <div class="tab-content active" id="pending-content" style="display: block;">
+                            <!-- Pending requests will be populated here -->
+                        </div>
+                        <div class="tab-content" id="approved-content" style="display: none;">
+                            <!-- Approved requests will be populated here -->
+                        </div>
+                        <div class="tab-content" id="rejected-content" style="display: none;">
+                            <!-- Rejected requests will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="section">
+            <div class="history-container">
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label>Année</label>
+                        <select id="yearFilter">
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Type de Congé</label>
+                        <select id="typeFilter">
+                            <option value="all">Tous</option>
+                            <option value="paid">Congé Payé</option>
+                            <option value="unpaid">Congé Sans Solde</option>
+                            <option value="sick">Congé Maladie</option>
+                        </select>
+                    </div>
+                    <button class="export-btn">
+                        <i class="fas fa-download"></i> Exporter
+                    </button>
+                </div>
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date de Demande</th>
+                                <th>Type</th>
+                                <th>Période</th>
+                                <th>Durée</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Table content will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents Section -->
+        <section id="documents" class="section">
+            <div class="documents-container">
+                <div class="documents-header">
+                    <h2>Mes Documents</h2>
+                    <button class="upload-btn">
+                        <i class="fas fa-upload"></i> Télécharger un Document
+                    </button>
+                </div>
+                <div class="documents-grid" id="documentsGrid">
+                    <!-- Document cards will be added dynamically by JavaScript -->
+                    <div class="empty-documents-state">
+                        <i class="fas fa-folder-open"></i>
+                        <p>Aucun document disponible</p>
+                        <small>Utilisez le bouton "Télécharger un Document" pour ajouter des documents</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="employee-portal.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Algérie - Portail Responsable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="manager-portal.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="logo" width="400">
+        </div>
+        
+        <nav>
+            <a href="#dashboard" class="active" data-section="dashboard">
+                <i class="fas fa-home"></i> 
+                <span>Tableau de Bord</span>
+            </a>
+            <a href="#team-management" data-section="team-management">
+                <i class="fas fa-users"></i> 
+                <span>Gestion d'Équipe</span>
+            </a>
+            <a href="#leave-approvals" data-section="leave-approvals">
+                <i class="fas fa-calendar-check"></i> 
+                <span>Approbation Congés</span>
+            </a>
+        </nav>
+    </div>
+
+    <main>
+        <header>
+            <div class="page-title">
+                <h1 id="currentPageTitle">Tableau de Bord</h1>
+            </div>
+            <div class="user-info">
+                <button id="resetDataBtn" class="reset-btn" title="Réinitialiser toutes les données">
+                    <i class="fas fa-sync-alt"></i> Réinitialiser
+                </button>
+                <div class="notifications">
+                    <div class="notifications-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <img src="https://ui-avatars.com/api/?name=Manager" alt="Profile">
+                    <div class="profile-info">
+                        <span class="name">Ahmed Manager</span>
+                        <span class="role">Chef d'Équipe</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard-header">
+                <div class="profile-summary">
+                    <div class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Ahmed+Manager" alt="Profile" id="profileImage">
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                        <button class="change-avatar-btn" onclick="document.getElementById('profilePictureInput').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info-header">
+                        <h2>Ahmed Manager</h2>
+                        <p>Chef d'Équipe</p>
+                        <p>ID Manager: MGR2025-001</p>
+                        <div class="profile-info-grid">
+                            <div class="info-group">
+                                <label>Email Professionnel</label>
+                                <p>ahmed.manager@airalgerie.dz</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Téléphone</label>
+                                <p>+213 6 12 34 56 78</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Département</label>
+                                <p>Opérations Aériennes</p>
+                            </div>
+                            <div class="info-group">
+                                <label>Équipe</label>
+                                <p>12 employés</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Membres d'Équipe</h3>
+                        <p id="dashTeamMemberCount">- employés</p>
+                        <small>Actifs</small>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Demandes en Attente</h3>
+                        <p id="dashPendingRequestCount">- demandes</p>
+                        <small>À traiter</small>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Absences Aujourd'hui</h3>
+                        <p id="dashAbsentTodayCount">- employés</p>
+                        <small>En congé</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="grid-item pending-requests">
+                    <h2>Demandes à Traiter</h2>
+                    <div class="requests-list">
+                        <div class="request-item">
+                            <div class="request-header">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Employee">
+                                <div class="request-info">
+                                    <h4>John Doe</h4>
+                                    <p>Congé Annuel</p>
+                                </div>
+                                <div class="request-date">
+                                    <span>12-15 Mars</span>
+                                    <small>4 jours</small>
+                                </div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="approve-btn">Approuver</button>
+                                <button class="reject-btn">Refuser</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item team-calendar">
+                    <h2>Calendrier d'Équipe</h2>
+                    <div class="calendar-preview">
+                        <div class="calendar-header">
+                            <div class="calendar-nav">
+                                <button class="calendar-nav-btn" id="prevMonth">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <span class="current-month" id="currentMonth"></span>
+                                <button class="calendar-nav-btn" id="nextMonth">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="calendar-widget">
+                            <div class="calendar-weekdays">
+                                <div>Dim</div>
+                                <div>Lun</div>
+                                <div>Mar</div>
+                                <div>Mer</div>
+                                <div>Jeu</div>
+                                <div>Ven</div>
+                                <div>Sam</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays"></div>
+                        </div>
+
+                        <div class="calendar-legend">
+                            <div class="legend-item">
+                                <div class="legend-color today"></div>
+                                <span>Aujourd'hui</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color approved"></div>
+                                <span>Congé Approuvé</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color pending"></div>
+                                <span>En Attente</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color rejected"></div>
+                                <span>Refusé</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Management Section -->
+        <section id="team-management" class="section">
+            <div class="team-container">
+                <div class="team-header">
+                    <h2>Gestion d'Équipe</h2>
+                    <div class="team-actions">
+                        <button class="add-member-btn">
+                            <i class="fas fa-user-plus"></i> Ajouter un Membre
+                        </button>
+                    </div>
+                </div>
+
+                <div class="team-overview">
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="overview-details">
+                            <h3>Effectif Total</h3>
+                            <p>12 employés</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="overview-details">
+                            <h3>En Mission</h3>
+                            <p>3 employés</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="overview-details">
+                            <h3>En Formation</h3>
+                            <p>2 employés</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-management">
+                    <!-- Filters Section -->
+                    <div class="filters-section">
+                        <div class="search-filter">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchEmployee" placeholder="Rechercher un employé...">
+                        </div>
+                        
+                        <div class="filters-group">
+                            <div class="filter-item">
+                                <select id="departmentFilter">
+                                    <option value="">Département</option>
+                                    <option value="Operations">Opérations</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="IT">IT</option>
+                                </select>
+                                </div>
+
+                            <div class="filter-item">
+                                <select id="teamStatusFilter">
+                                    <option value="">Statut</option>
+                                    <option value="Active">Actif</option>
+                                    <option value="On Leave">En Congé</option>
+                                    <option value="Training">En Formation</option>
+                                    <option value="Mission">En Mission</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-item">
+                                <select id="roleFilter">
+                                    <option value="">Poste</option>
+                                    <option value="Chef d'Escale">Chef d'Escale</option>
+                                    <option value="Agent">Agent</option>
+                                    <option value="Technicien">Technicien</option>
+                                    <option value="Superviseur">Superviseur</option>
+                                </select>
+                            </div>
+
+                            <button class="reset-filters" id="resetFilters">
+                                <i class="fas fa-redo-alt"></i> Réinitialiser
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Team Table -->
+                    <div class="team-table-container">
+                        <table class="team-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="th-content">
+                                            Employé
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="th-content">
+                                            Département
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="th-content">
+                                            Poste
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="th-content">
+                                            Statut
+                                            <i class="fas fa-sort"></i>
+                                        </div>
+                                    </th>
+                                    <!-- <th>Performance</th>
+                                    <th>Actions</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="teamTableBody">
+                                <!-- Table content will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prevPage">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="page-numbers" id="pageNumbers">
+                            <!-- Page numbers will be populated by JavaScript -->
+                        </div>
+                        <button class="pagination-btn" id="nextPage">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leave Approvals Section -->
+        <section id="leave-approvals" class="section">
+            <div class="approvals-container">
+                <div class="approvals-header">
+                    <h2>Gestion des Congés</h2>
+                </div>
+
+                <div class="approval-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>En Attente</h4>
+                            <p id="pendingCount">-</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon approved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Approuvés</h4>
+                            <p id="approvedCount">-</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon conflict">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>Refusés</h4>
+                            <p id="rejectedCount">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="search-filter">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchLeave" placeholder="Rechercher un employé...">
+                    </div>
+                    
+                    <div class="filters-group">
+                        <div class="filter-item">
+                            <select id="typeFilter">
+                                <option value="">Type de Congé</option>
+                                <option value="Congé Annuel">Congé Annuel</option>
+                                <option value="Congé Maladie">Congé Maladie</option>
+                                <option value="Congé Exceptionnel">Congé Exceptionnel</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <select id="leaveStatusFilter">
+                                <option value="">Statut</option>
+                                <option value="En Attente">En Attente</option>
+                                <option value="Approuvé">Approuvé</option>
+                                <option value="Refusé">Refusé</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <input type="date" id="dateFilter" placeholder="Date">
+                        </div>
+
+                        <button class="reset-filters" id="resetLeaveFilters">
+                            <i class="fas fa-redo-alt"></i> Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leave Requests Table -->
+                <div class="leave-table-container">
+                    <table class="leave-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="th-content">
+                                        Employé
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="th-content">
+                                        Date Début
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="th-content">
+                                        Date Fin
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="th-content">
+                                        Durée
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="th-content">
+                                        Type
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="th-content">
+                                        Statut
+                                        <i class="fas fa-sort"></i>
+                                    </div>
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaveTableBody">
+                            <!-- Example row -->
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <img src="https://ui-avatars.com/api/?name=John+Doe" alt="John Doe" class="employee-avatar">
+                                        <div class="employee-details">
+                                            <span class="employee-name">John Doe</span>
+                                            <span class="employee-email">john.doe@airalgerie.dz</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>2024-03-12</td>
+                                <td>2024-03-15</td>
+                                <td>4 jours</td>
+                                <td>Congé Annuel</td>
+                                <td>
+                                    <span class="status-badge pending">
+                                        <i class="fas fa-clock"></i>
+                                        En Attente
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn approve" title="Approuver">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <button class="action-btn reject" title="Refuser">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                        <button class="action-btn details" title="Détails">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="prevLeavePage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-numbers" id="leavePageNumbers">
+                        <span class="page-number active">1</span>
+                        <span class="page-number">2</span>
+                        <span class="page-number">3</span>
+                    </div>
+                    <button class="pagination-btn" id="nextLeavePage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="manager-portal.js"></script>
+</body>
+</html>

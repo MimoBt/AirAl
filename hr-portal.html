@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Algérie - Portail RH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="hr-portal.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="logo" width="400">
+        </div>
+        
+        <nav>
+            <a href="#dashboard" class="active" data-section="dashboard">
+                <i class="fas fa-home"></i> 
+                <span>Tableau de Bord</span>
+            </a>
+            <a href="#employee-management" data-section="employee-management">
+                <i class="fas fa-users-cog"></i> 
+                <span>Gestion du Personnel</span>
+            </a>
+            <a href="#leave-management" data-section="leave-management">
+                <i class="fas fa-calendar-alt"></i> 
+                <span>Gestion des Congés</span>
+            </a>
+            <a href="#departments" data-section="departments">
+                <i class="fas fa-building"></i> 
+                <span>Départements</span>
+            </a>
+            <a href="#reports" data-section="reports">
+                <i class="fas fa-chart-line"></i> 
+                <span>Rapports & Analytics</span>
+            </a>
+            <a href="#settings" data-section="settings">
+                <i class="fas fa-cog"></i> 
+                <span>Paramètres</span>
+            </a>
+        </nav>
+    </div>
+
+    <main>
+        <header>
+            <div class="page-title">
+                <h1 id="currentPageTitle">Tableau de Bord RH</h1>
+            </div>
+            <div class="user-info">
+                <div class="quick-actions">
+                    <button class="action-btn" title="Nouvel employé">
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                    <button class="action-btn" title="Nouvelle demande">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                    <button class="action-btn" title="Exporter rapport">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                </div>
+                <div class="notifications">
+                    <div class="notifications-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">8</span>
+                    </div>
+                    <div class="notifications-dropdown">
+                        <div class="notifications-header">
+                            <h3>Notifications</h3>
+                            <span class="mark-all-read">Tout marquer comme lu</span>
+                        </div>
+                        <div class="notifications-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon warning">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Demande urgente</div>
+                                    <div class="notification-message">3 demandes de congés nécessitent votre attention</div>
+                                    <div class="notification-time">Il y a 30 minutes</div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon info">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Nouvel employé</div>
+                                    <div class="notification-message">Karim Ahmed a rejoint l'équipe Opérations</div>
+                                    <div class="notification-time">Il y a 2 heures</div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">Politique mise à jour</div>
+                                    <div class="notification-message">La politique de congés a été mise à jour</div>
+                                    <div class="notification-time">Il y a 1 jour</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notifications-footer">
+                            <a href="#" class="view-all">Voir toutes les notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="profile-avatar">
+                        <img src="https://ui-avatars.com/api/?name=HR+Admin" alt="Profile" id="profileImage">
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                        <button class="change-avatar-btn" onclick="document.getElementById('profilePictureInput').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <span class="name">Sarah Admin</span>
+                        <span class="role">Administrateur RH</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="#profile"><i class="fas fa-user"></i> Mon Profil</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> Paramètres</a>
+                            <a href="#help"><i class="fas fa-question-circle"></i> Aide</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#logout" class="logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="dashboard-header">
+                <div class="welcome-message">
+                    <h2>Bienvenue, Sarah!</h2>
+                    <p>Voici votre aperçu quotidien des activités RH</p>
+                </div>
+                <div class="date-filter">
+                    <div class="date-picker">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Mars 2025</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Effectif Total</h3>
+                        <p>250 employés</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5% vs mois dernier</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Congés en Cours</h3>
+                        <p>15 employés</p>
+                        <div class="stat-trend">
+                            <span>Cette semaine</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Taux de Présence</h3>
+                        <p>94%</p>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+2% vs hier</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>Demandes en Attente</h3>
+                        <p>8 demandes</p>
+                        <div class="stat-trend urgent">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>3 urgentes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="grid-item department-overview">
+                    <h2>Vue d'Ensemble des Départements</h2>
+                    <div class="department-stats">
+                        <div class="department-item">
+                            <div class="department-info">
+                                <h4>Operations</h4>
+                                <p>85 employés</p>
+                            </div>
+                            <div class="department-presence">
+                                <div class="presence-bar">
+                                    <div class="presence-fill" style="width: 95%"></div>
+                                </div>
+                                <span>95% présents</span>
+                            </div>
+                        </div>
+                        <!-- More departments will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="grid-item leave-overview">
+                    <h2>Aperçu des Congés</h2>
+                    <div class="leave-stats">
+                        <canvas id="leaveStatsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employee Management Section -->
+        <section id="employee-management" class="section">
+            <div class="employee-management-container">
+                <div class="section-header">
+                    <h2>Gestion du Personnel</h2>
+                    <div class="header-actions">
+                        <button class="add-employee-btn primary-btn">
+                            <i class="fas fa-user-plus"></i> Nouveau Employé
+                        </button>
+                        <div class="dropdown-wrapper">
+                            <button class="secondary-btn actions-btn">
+                                <i class="fas fa-ellipsis-v"></i> Actions
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="#import"><i class="fas fa-file-import"></i> Importer</a>
+                                <a href="#export"><i class="fas fa-file-export"></i> Exporter</a>
+                                <a href="#print"><i class="fas fa-print"></i> Imprimer</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#bulk-edit" class="warning"><i class="fas fa-pencil-alt"></i> Édition en masse</a>
+                            </div>
+                        </div>
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Rechercher un employé...">
+                            <button class="advanced-search">
+                                <i class="fas fa-sliders-h"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-options">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="table">
+                            <i class="fas fa-list"></i> Liste
+                        </button>
+                        <button class="view-btn" data-view="grid">
+                            <i class="fas fa-th-large"></i> Grille
+                        </button>
+                        <button class="view-btn" data-view="card">
+                            <i class="fas fa-id-card"></i> Cartes
+                        </button>
+                    </div>
+                    <div class="filter-tags">
+                        <span class="filter-tag">
+                            Opérations Aériennes
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="filter-tag">
+                            Pilotes
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <button class="clear-filters">
+                            Effacer tous les filtres
+                        </button>
+                    </div>
+                </div>
+
+                <div class="employee-filters">
+                    <div class="filter-group">
+                        <label>Département</label>
+                        <select name="department">
+                            <option value="">Tous</option>
+                            <option value="Opérations Aériennes">Opérations Aériennes</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Service Client">Service Client</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Statut</label>
+                        <select name="status">
+                            <option value="">Tous</option>
+                            <option value="active">Actif</option>
+                            <option value="leave">En Congé</option>
+                            <option value="training">En Formation</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Poste</label>
+                        <select name="position">
+                            <option value="">Tous</option>
+                            <option value="Pilote">Pilote</option>
+                            <option value="Personnel Navigant">Personnel Navigant</option>
+                            <option value="Technicien">Technicien</option>
+                            <option value="Agent d'Escale">Agent d'Escale</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Ancienneté</label>
+                        <select name="seniority">
+                            <option value="">Tous</option>
+                            <option value="less-than-1">< 1 an</option>
+                            <option value="1-3">1-3 ans</option>
+                            <option value="3-5">3-5 ans</option>
+                            <option value="more-than-5">> 5 ans</option>
+                        </select>
+                    </div>
+                    <button class="filter-more">
+                        <i class="fas fa-plus-circle"></i> Plus de filtres
+                    </button>
+                </div>
+
+                <div class="employee-views">
+                    <!-- Table View (Default) -->
+                    <div class="employee-view table-view active">
+                        <div class="employee-table-container">
+                            <table class="employee-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="select-all">
+                                        </th>
+                                        <th>Employé</th>
+                                        <th>ID</th>
+                                        <th>Département</th>
+                                        <th>Poste</th>
+                                        <th>Statut</th>
+                                        <th>Performance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Table content will be loaded by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Grid View -->
+                    <div class="employee-view grid-view">
+                        <div class="employees-grid">
+                            <!-- Grid items will be loaded by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Card View -->
+                    <div class="employee-view card-view">
+                        <div class="employees-cards">
+                            <!-- Card items will be loaded by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-footer">
+                    <div class="bulk-actions">
+                        <select class="bulk-action-select">
+                            <option value="">Action groupée</option>
+                            <option value="export">Exporter la sélection</option>
+                            <option value="email">Envoyer un e-mail</option>
+                            <option value="status">Changer le statut</option>
+                        </select>
+                        <button class="apply-bulk-action" disabled>Appliquer</button>
+                    </div>
+                    <div class="table-info">
+                        Affichage de <span>1-10</span> sur <span>150</span> employés
+                    </div>
+                    <div class="pagination">
+                        <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span>...</span>
+                        <button class="page-btn">15</button>
+                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="page-size">
+                        <select>
+                            <option>10 par page</option>
+                            <option>25 par page</option>
+                            <option>50 par page</option>
+                            <option>100 par page</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee Details Modal -->
+            <div class="modal employee-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Détails de l'Employé</h3>
+                        <button class="close-modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="employee-details">
+                            <div class="employee-profile">
+                                <div class="profile-image">
+                                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Employee">
+                                    <button class="change-avatar-btn">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                <div class="profile-info">
+                                    <h2 class="employee-name">John Doe</h2>
+                                    <p class="employee-position">Pilote Senior</p>
+                                    <p class="employee-id">ID: EMP001</p>
+                                </div>
+                            </div>
+                            <div class="employee-tabs">
+                                <div class="tab active" data-tab="general">Général</div>
+                                <div class="tab" data-tab="documents">Documents</div>
+                                <div class="tab" data-tab="leave">Congés</div>
+                                <div class="tab" data-tab="performance">Performance</div>
+                                <div class="tab" data-tab="history">Historique</div>
+                            </div>
+                            <div class="tab-content active" data-content="general">
+                                <div class="info-grid">
+                                    <div class="info-group">
+                                        <label>Email</label>
+                                        <p>john.doe@airalgerie.dz</p>
+                                    </div>
+                                    <div class="info-group">
+                                        <label>Téléphone</label>
+                                        <p>+213 123 456 789</p>
+                                    </div>
+                                    <div class="info-group">
+                                        <label>Date d'embauche</label>
+                                        <p>15 Mars 2018</p>
+                                    </div>
+                                    <div class="info-group">
+                                        <label>Département</label>
+                                        <p>Opérations Aériennes</p>
+                                    </div>
+                                    <div class="info-group">
+                                        <label>Manager</label>
+                                        <p>Ahmed Manager</p>
+                                    </div>
+                                    <div class="info-group">
+                                        <label>Status</label>
+                                        <p><span class="status-badge active">Actif</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="secondary-btn">Annuler</button>
+                        <button class="primary-btn">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leave Management Section -->
+        <section id="leave-management" class="section">
+            <div class="leave-management-container">
+                <div class="section-header">
+                    <h2>Gestion des Congés</h2>
+                    <div class="header-actions">
+                        <button class="primary-btn">
+                            <i class="fas fa-plus"></i> Nouvelle Politique
+                        </button>
+                        <button class="secondary-btn">
+                            <i class="fas fa-calendar-alt"></i> Planning Annuel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="leave-overview">
+                    <div class="overview-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>En Congé Aujourd'hui</h3>
+                            <p class="number">15</p>
+                            <span class="trend">+3 depuis hier</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Demandes en Attente</h3>
+                            <p class="number">8</p>
+                            <span class="trend urgent">Urgent: 3</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Congés Approuvés</h3>
+                            <p class="number">45</p>
+                            <span class="trend">Ce mois</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leave-policies">
+                    <h3>Politiques de Congés</h3>
+                    <div class="policies-grid">
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Congés Annuels</h4>
+                                <span class="days">30 jours</span>
+                            </div>
+                            <div class="policy-details">
+                                <p>Congés payés accordés par an</p>
+                                <ul>
+                                    <li>Accumulation mensuelle</li>
+                                    <li>Report max: 10 jours</li>
+                                    <li>Préavis: 2 semaines</li>
+                                </ul>
+                            </div>
+                            <button class="edit-policy-btn">Modifier</button>
+                        </div>
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Congés Maladie</h4>
+                                <span class="days">15 jours</span>
+                            </div>
+                            <div class="policy-details">
+                                <p>Congés pour raison médicale</p>
+                                <ul>
+                                    <li>Justificatif requis</li>
+                                    <li>Extensible sur avis médical</li>
+                                    <li>Préavis: Non requis</li>
+                                </ul>
+                            </div>
+                            <button class="edit-policy-btn">Modifier</button>
+                        </div>
+                        <div class="policy-card">
+                            <div class="policy-header">
+                                <h4>Congés Exceptionnels</h4>
+                                <span class="days">Variable</span>
+                            </div>
+                            <div class="policy-details">
+                                <p>Événements spéciaux</p>
+                                <ul>
+                                    <li>Mariage: 5 jours</li>
+                                    <li>Naissance: 3 jours</li>
+                                    <li>Décès: 3 jours</li>
+                                </ul>
+                            </div>
+                            <button class="edit-policy-btn">Modifier</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leave-calendar">
+                    <div class="calendar-header">
+                        <h3>Calendrier des Absences</h3>
+                        <div class="calendar-controls">
+                            <button class="view-btn active">Mois</button>
+                            <button class="view-btn">Semaine</button>
+                            <button class="view-btn">Jour</button>
+                            <div class="date-navigator">
+                                <button><i class="fas fa-chevron-left"></i></button>
+                                <span>Mars 2025</span>
+                                <button><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="leaveCalendar" class="calendar-grid">
+                        <!-- Calendar will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Departments Section -->
+        <section id="departments" class="section">
+            <div class="departments-container">
+                <div class="section-header">
+                    <h2>Départements</h2>
+                    <div class="header-actions">
+                        <button class="primary-btn">
+                            <i class="fas fa-plus"></i> Nouveau Département
+                        </button>
+                        <button class="secondary-btn">
+                            <i class="fas fa-sitemap"></i> Organigramme
+                        </button>
+                    </div>
+                </div>
+
+                <div class="departments-grid">
+                    <div class="department-card">
+                        <div class="department-header">
+                            <div class="department-info">
+                                <h3>Opérations Aériennes</h3>
+                                <span class="employee-count">85 employés</span>
+                            </div>
+                            <div class="department-actions">
+                                <button><i class="fas fa-edit"></i></button>
+                                <button><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="department-stats">
+                            <div class="stat">
+                                <span class="label">Budget</span>
+                                <span class="value">12.5M DA</span>
+                                <span class="trend positive">+5%</span>
+                            </div>
+                            <div class="stat">
+                                <span class="label">Performance</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 92%"></div>
+                                </div>
+                                <span class="value">92%</span>
+                            </div>
+                        </div>
+                        <div class="department-metrics">
+                            <div class="metric">
+                                <i class="fas fa-user-check"></i>
+                                <span>Présence: 95%</span>
+                            </div>
+                            <div class="metric">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Productivité: 88%</span>
+                            </div>
+                        </div>
+                        <div class="key-positions">
+                            <h4>Postes Clés</h4>
+                            <div class="position-list">
+                                <div class="position-item">
+                                    <span>Chef des Opérations</span>
+                                    <span class="status filled">Pourvu</span>
+                                </div>
+                                <div class="position-item">
+                                    <span>Superviseur de Vol</span>
+                                    <span class="status vacant">2 Postes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More department cards will be added by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="reports-container">
+                <div class="section-header">
+                    <h2>Rapports & Analytics</h2>
+                    <div class="header-actions">
+                        <div class="date-range-picker">
+                            <i class="fas fa-calendar"></i>
+                            <span>01 Mars - 31 Mars 2025</span>
+                        </div>
+                        <button class="export-btn">
+                            <i class="fas fa-file-export"></i> Exporter
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reports-overview">
+                    <div class="overview-card">
+                        <div class="card-header">
+                            <h3>Effectif Total</h3>
+                            <span class="trend positive">+5%</span>
+                        </div>
+                        <p class="number">250</p>
+                        <div class="card-footer">
+                            <span>vs. mois dernier: 238</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-header">
+                            <h3>Coût RH</h3>
+                            <span class="trend">-2%</span>
+                        </div>
+                        <p class="number">45.2M DA</p>
+                        <div class="card-footer">
+                            <span>Budget: 48M DA</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-header">
+                            <h3>Satisfaction</h3>
+                            <span class="trend positive">+8%</span>
+                        </div>
+                        <p class="number">85%</p>
+                        <div class="card-footer">
+                            <span>Basé sur 180 réponses</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card full-width">
+                        <div class="report-header">
+                            <h3>Évolution des Effectifs</h3>
+                            <div class="report-controls">
+                                <select>
+                                    <option>Par Département</option>
+                                    <option>Par Poste</option>
+                                    <option>Par Ancienneté</option>
+                                </select>
+                                <div class="chart-type">
+                                    <button class="active"><i class="fas fa-chart-line"></i></button>
+                                    <button><i class="fas fa-chart-bar"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="workforceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Répartition par Département</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="departmentDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Taux de Rotation</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="turnoverChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-reports">
+                    <div class="section-header">
+                        <h3>Rapports Personnalisés</h3>
+                        <button class="create-report-btn">
+                            <i class="fas fa-plus"></i> Nouveau Rapport
+                        </button>
+                    </div>
+                    <div class="reports-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom du Rapport</th>
+                                    <th>Dernière Exécution</th>
+                                    <th>Fréquence</th>
+                                    <th>Destinataires</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rapport Mensuel RH</td>
+                                    <td>01/03/2025</td>
+                                    <td>Mensuel</td>
+                                    <td>
+                                        <div class="recipients">
+                                            <img src="https://ui-avatars.com/api/?name=DRH" alt="DRH">
+                                            <img src="https://ui-avatars.com/api/?name=CEO" alt="CEO">
+                                            <span>+2</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button title="Exécuter"><i class="fas fa-play"></i></button>
+                                            <button title="Modifier"><i class="fas fa-edit"></i></button>
+                                            <button title="Supprimer"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="settings-container">
+                <!-- Settings content will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="hr-portal.js"></script>
+</body>
+</html>
